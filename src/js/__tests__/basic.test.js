@@ -1,8 +1,10 @@
-import orderByProps from '../sgfg';
+import orderByProps from '../app';
 
 test('sorting', () => {
-  const obj = {name: 'мечник', health: 10, level: 2, attack: 80, defence: 40};
-  expect(orderByProps(obj, ["name", "level", "beard"])).toEqual([
+  const obj = {
+    name: 'мечник', health: 10, level: 2, attack: 80, defence: 40,
+  };
+  expect(orderByProps(obj, ['name', 'level', 'beard'])).toEqual([
     { key: 'name', value: 'мечник' },
     { key: 'level', value: 2 },
     { key: 'attack', value: 80 },
@@ -12,7 +14,9 @@ test('sorting', () => {
 });
 
 test('sorting with an empty array', () => {
-  const obj = {name: 'мечник', health: 10, level: 2, attack: 80, defence: 40};
+  const obj = {
+    name: 'мечник', health: 10, level: 2, attack: 80, defence: 40,
+  };
   expect(orderByProps(obj, [])).toEqual([
     { key: 'attack', value: 80 },
     { key: 'defence', value: 40 },

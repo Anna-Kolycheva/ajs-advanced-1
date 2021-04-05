@@ -1,19 +1,17 @@
 export default function orderByProps(object, arr) {
-  const obj = object;
-  const ObjFirst = [];
+  const objFirst = [];
+  const objSecond = [];
 
-  arr.forEach((element) => {
-    if (element in obj) {
-      ObjFirst.push({ key: element, value: obj[`${element}`] });
-      delete obj[`${element}`];
+  for (const key in object) {
+    if (arr.includes(key)) {
+      objFirst.push({ key, value: object[key] });
+    } else {
+      objSecond.push({ key, value: object[key] });
     }
-  });
+  }
 
-  const ObjSecond = [];
-  const keys = Object.keys(obj);
-  keys.sort();
-  keys.forEach((element) => {
-    ObjSecond.push({ key: element, value: obj[`${element}`] });
-  });
-  return [...ObjFirst, ...ObjSecond];
+  objFirst.sort((a, b) => arr.indexOf(a.key) - arr.indexOf(b.key));
+  objSecond.sort((a, b) => (a.key > b.key ? 1 : -1));
+
+  return [...objFirst, ...objSecond];
 }
